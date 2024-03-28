@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './ListProduct.css'
 import cross_icon from '../../assets/cross_icon.png'
-import { Link } from 'react-router-dom'
 
 
 function EditProductModal({ product,image, setImage  , updateProductDetails, saveEditedProduct, closeModal }) {
