@@ -105,7 +105,7 @@ const [image, setImage] = useState(null);
 
 
 const fetchInfo = async () => {
-  await fetch('http://localhost:6002/allproducts')
+  await fetch('https://e-commerce-website-71dm.onrender.com/allproducts')
   .then((res)=>res.json())
   .then ((data)=>{setAllProducts(data)})
 }
@@ -115,7 +115,7 @@ useEffect(()=>{
 },[])
 
 const remove_product = async (id) => {
-  await fetch('http://localhost:6002/removeproduct',{
+  await fetch('https://e-commerce-website-71dm.onrender.com/removeproduct',{
     method:'POST',
     headers:{
       Accept:'application/json',
@@ -144,7 +144,7 @@ const saveEditedProduct = async () => {
     if (image) {
       const formData = new FormData();
       formData.append('product', image);
-      const response = await fetch('http://localhost:6002/upload', {
+      const response = await fetch('https://e-commerce-website-71dm.onrender.com/upload', {
         method: 'POST',
         body: formData,
       });
@@ -154,7 +154,7 @@ const saveEditedProduct = async () => {
       imageURL = editingProduct.image;
     }
 
-    await fetch(`http://localhost:6002/editproduct/${editingProduct.id}`, {
+    await fetch(`https://e-commerce-website-71dm.onrender.com/${editingProduct.id}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
