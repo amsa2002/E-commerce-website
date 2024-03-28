@@ -14,7 +14,6 @@ function Navbar() {
             <img src={logo} alt='logo'></img>
             <Link to='/'><p>SHOPPER</p></Link>
         </div>
-    
             <ul className='nav-menu'>
                 <li onClick={()=>{setMenu("shop")}}><Link style ={{textDecoration:'none'}} to='/'>Shop</Link>{menu==="shop"?<hr/>:<></>}</li>
                 <li onClick={()=>{setMenu("mens")}}><Link  style ={{textDecoration:'none'}} to='/mens'>Mens</Link>{menu==="mens"?<hr/>:<></>}</li>
@@ -23,8 +22,8 @@ function Navbar() {
                 <li onClick={()=>{setMenu("Footwear")}}><Link  style ={{textDecoration:'none'}} to='/Footwear'>Footwear</Link>{menu==="Footwear"?<hr/>:<></>}</li>
                 <li onClick={()=>{setMenu("Watches")}}><Link  style ={{textDecoration:'none'}} to='/Watches'>Watches</Link>{menu==="Watches"?<hr/>:<></>}</li>
                 <li onClick={()=>{setMenu("jewellery")}}><Link  style ={{textDecoration:'none'}} to='/jewellery'>Jewellery</Link>{menu==="jewellery"?<hr/>:<></>}</li>
+                <li className='admin'><a href="https://e-commerce-website-delta-swart.vercel.app" target="_blank" rel="noopener noreferrer">sale</a></li>
             </ul>
-        
         <div className='nav-login-cart'>
         {localStorage.getItem('auth-token')
         ?<button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace("/");}}>Logout</button>
