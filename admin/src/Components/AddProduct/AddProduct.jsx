@@ -25,7 +25,7 @@ function AddProduct() {
         formData.append('product', image)
         let responseData
 
-        await fetch("http://localhost:6002/upload",{
+        await fetch("https://e-commerce-website-71dm.onrender.com/upload",{
             method:'POST',
             headers:{
                 Accept:'application/json',
@@ -37,7 +37,7 @@ function AddProduct() {
         if(responseData.success){
             product.image = responseData.image_url
             console.log(product)
-            await fetch ('http://localhost:6002/addproduct',{
+            await fetch ('https://e-commerce-website-71dm.onrender.com/addproduct',{
                 method:'POST',
                 headers:{
                     Accept:'application/json',

@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
 // Determine base URL for API endpoints
-const baseURL = process.env.BASE_URL || "http://localhost:6002";
+const baseURL = process.env.BASE_URL || "https://e-commerce-website-71dm.onrender.com";
 
 
 //Database Connection With MongoDB
