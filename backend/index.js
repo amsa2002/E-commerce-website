@@ -16,6 +16,10 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
+// Determine base URL for API endpoints
+const baseURL = process.env.BASE_URL || "http://localhost:6002";
+
+
 //Database Connection With MongoDB
 
 mongoose.connect("mongodb+srv://amsaramanujam:amsa08082002@cluster0.d0vzqwc.mongodb.net/e-commerce",{
@@ -42,7 +46,7 @@ app.use("/images",express.static("upload/images"))
 app.post("/upload", upload.single('product'),(req,res)=>{
     res.json({
         success:1,
-        image_url: `http://localhost:6002/images/${req.file.filename}`
+        image_url: `${baseURL}/images/${req.file.filename}`
     })
 })
 
@@ -405,20 +409,6 @@ app.post('/customers', async (req, res) => {
 
 
 
-//API Creation
-
-app.get('/',(req,res)=>{
-  res.send("Express app is running")
-})
-
-app.listen(port, (error)=>{
-    if(!error){
-        console.log("Server running on port"+port)
-    }
-    else{
-        console.log("Error:"+error)
-    }
-})
 
 // Schema creating for user model
 const Seller = mongoose.model('Seller',{
@@ -441,7 +431,7 @@ const Seller = mongoose.model('Seller',{
   }
 })
 
-// Creating endpoint for registering user
+// Creating endpoint for registering seller
 app.post('/seller-signup', async (req,res)=>{
 
   let check = await Seller.findOne({email:req.body.email})
@@ -492,4 +482,20 @@ app.post('/seller-login', async(req,res)=>{
   else{
     res.json({success:false, errors:"Wrong Email Id"})
   }
+})
+
+
+//API Creation
+
+app.get('/',(req,res)=>{
+  res.send("Express app is running")
+})
+
+app.listen(port, (error)=>{
+    if(!error){
+        console.log("Server running on port"+port)
+    }
+    else{
+        console.log("Error:"+error)
+    }
 })
