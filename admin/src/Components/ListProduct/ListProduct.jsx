@@ -153,7 +153,7 @@ const saveEditedProduct = async () => {
       imageURL = editingProduct.image;
     }
 
-    await fetch(`https://e-commerce-website-71dm.onrender.com/editproduct/${editingProduct.id}`, {
+    await fetch(`https://e-commerce-website-71dm.onrender.com/${editingProduct.id}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
