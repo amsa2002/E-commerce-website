@@ -19,7 +19,7 @@ function LogInSignUp() {
   const login = async () =>{
     console.log("Login function is excuted", formData);
     let responseData
-    await fetch('http://localhost:6002/seller-login',{
+    await fetch('https://e-commerce-website-71dm.onrender.com/login',{
       method:"POST",
       headers:{
         type:"Application/json",
@@ -39,7 +39,7 @@ function LogInSignUp() {
   const signup = async () =>{
     console.log("Signup function is excuted", formData);
     let responseData
-    await fetch('http://localhost:6002/seller-signup',{
+    await fetch('https://e-commerce-website-71dm.onrender.com/signup',{
       method:"POST",
       headers:{
         type:"Application/json",

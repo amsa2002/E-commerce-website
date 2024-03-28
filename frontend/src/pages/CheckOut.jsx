@@ -23,16 +23,16 @@ function CheckOut() {
       })
   }
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
-    try {
-      const response = await axios.post('http://localhost:6002/customers', formData)
-      console.log('Customer details stored successfully:', response.data);
+  // const handleSubmit = async (e) =>{
+  //   e.preventDefault()
+  //   try {
+  //     const response = await axios.post('http://localhost:6002/customers', formData)
+  //     console.log('Customer details stored successfully:', response.data);
 
-    } catch (error) {
-      console.error('Error storing customer details:', error);
-    }
-  }
+  //   } catch (error) {
+  //     console.error('Error storing customer details:', error);
+  //   }
+  // }
 
   const [promoCode, setPromoCode] = useState('');
 
@@ -44,7 +44,7 @@ function CheckOut() {
     const receiptId = "qwsaq1";
 
     const paymentHandler = async (e) =>{
-        const response = await fetch('http://localhost:6002/order',{
+        const response = await fetch('https://e-commerce-website-71dm.onrender.com/order',{
           method:'POST',
           headers:{
             'Content-Type' : 'application/json',
@@ -74,7 +74,7 @@ function CheckOut() {
                   ...response,
                 }
 
-                const validateRes = await fetch("http://localhost:6002/order/validate",{
+                const validateRes = await fetch("https://e-commerce-website-71dm.onrender.com/order/validate",{
                   method:"POST",
                   headers:{
                   'Content-Type':'Application/json',

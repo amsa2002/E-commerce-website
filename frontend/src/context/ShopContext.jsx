@@ -18,13 +18,13 @@ function ShopContextProvider(props) {
 
     useEffect(()=>{
 
-        fetch('http://localhost:6002/allproducts')
+        fetch('https://e-commerce-website-71dm.onrender.com/allproducts')
         .then((response)=>response.json())
         .then((data)=>setAll_Product(data))
 
         if(localStorage.getItem("auth-token"))
     {
-      fetch('http://localhost:6002/getcart', {
+      fetch('https://e-commerce-website-71dm.onrender.com/getcart', {
       method: 'POST',
       headers: {
         Accept:'application/form-data',
@@ -43,7 +43,7 @@ function ShopContextProvider(props) {
     const addToCart = (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         if(localStorage.getItem('auth-token')){
-            fetch("http://localhost:6002/addtocart",{
+            fetch("https://e-commerce-website-71dm.onrender.com/addtocart",{
                 method:"POST",
                 headers:{
                     Acceept:'application/form-data',
@@ -60,7 +60,7 @@ function ShopContextProvider(props) {
     const removeFromCart = (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
         if(localStorage.getItem('auth-token')){
-            fetch("http://localhost:6002/removefromcart",{
+            fetch("https://e-commerce-website-71dm.onrender.com/removefromcart",{
                 method:"POST",
                 headers:{
                     Acceept:'application/form-data',
@@ -118,7 +118,7 @@ function ShopContextProvider(props) {
 
     const applyPromoCode = async () => {
       try {
-        const response = await fetch('http://localhost:6002/apply-promo-code', {
+        const response = await fetch('https://e-commerce-website-71dm.onrender.com/apply-promo-code', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
