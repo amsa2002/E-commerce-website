@@ -1,4 +1,4 @@
-const port = process.env.PORT || 6002
+// const port = process.env.PORT || 6002
 const express = require("express")
 const app = express()
 const jwt = require("jsonwebtoken")
@@ -10,12 +10,32 @@ const { log, error } = require("console")
 const Razorpay = require("razorpay")
 const crypto = require("crypto")
 const bodyParser = require('body-parser')
+const dotenv = require('dotenv')
 
-
+dotenv.config()
+const PORT = process.env.PORT
 app.use(express.json())
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
+
+app.listen(PORT,()=>console.log(`App is listening ${PORT}`))
+
+//API Creation
+
+// app.get('/',(req,res)=>{
+//   res.send("Express app is running")
+// })
+
+// app.listen(port, (error)=>{
+//     if(!error){
+//         console.log("Server running on port"+port)
+//     }
+//     else{
+//         console.log("Error:"+error)
+//     }
+// })
+
 
 // Determine base URL for API endpoints
 const baseURL = process.env.BASE_URL || "https://e-commerce-website-71dm.onrender.com";
@@ -23,7 +43,7 @@ const baseURL = process.env.BASE_URL || "https://e-commerce-website-71dm.onrende
 
 //Database Connection With MongoDB
 
-mongoose.connect("mongodb+srv://amsaramanujam:amsa08082002@cluster0.d0vzqwc.mongodb.net/e-commerce",{
+mongoose.connect(`${process.env.DB_URL}/${process.env.DB_NAME}`,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -223,7 +243,7 @@ app.post('/signup', async (req,res)=>{
     }
   }
 
-    const token = jwt.sign(data, 'secret_ecom')
+    const token = jwt.sign(data, process.env.JWT_SECRET)
     res.json({success:true,token})
 
 })
@@ -239,7 +259,7 @@ app.post('/login', async(req,res)=>{
           id:user.id
         }
       }
-      const token = jwt.sign(data, 'secret_ecom')
+      const token = jwt.sign(data, process.env.JWT_SECRET)
       res.json({success:true,token})
     }
     else{
@@ -454,7 +474,7 @@ app.post('/seller-signup', async (req,res)=>{
     }
   }
 
-    const token = jwt.sign(data, 'secret_ecom')
+    const token = jwt.sign(data, process.env.JWT_SECRET)
     res.json({success:true,token})
 
 })
@@ -470,7 +490,7 @@ app.post('/seller-login', async(req,res)=>{
           id:seller.id
         }
       }
-      const token = jwt.sign(data, 'secret_ecom')
+      const token = jwt.sign(data, process.env.JWT_SECRET)
       res.json({success:true,token})
     }
     else{
@@ -483,17 +503,3 @@ app.post('/seller-login', async(req,res)=>{
 })
 
 
-//API Creation
-
-app.get('/',(req,res)=>{
-  res.send("Express app is running")
-})
-
-app.listen(port, (error)=>{
-    if(!error){
-        console.log("Server running on port"+port)
-    }
-    else{
-        console.log("Error:"+error)
-    }
-})
