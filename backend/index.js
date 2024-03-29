@@ -1,4 +1,3 @@
-// const port = process.env.PORT || 6002
 const express = require("express")
 const app = express()
 const jwt = require("jsonwebtoken")
@@ -21,23 +20,9 @@ app.use(bodyParser.json());
 
 app.listen(PORT,()=>console.log(`App is listening ${PORT}`))
 
-//API Creation
-
-// app.get('/',(req,res)=>{
-//   res.send("Express app is running")
-// })
-
-// app.listen(port, (error)=>{
-//     if(!error){
-//         console.log("Server running on port"+port)
-//     }
-//     else{
-//         console.log("Error:"+error)
-//     }
-// })
-
 
 // Determine base URL for API endpoints
+
 const baseURL = process.env.BASE_URL || "https://e-commerce-website-71dm.onrender.com";
 
 
