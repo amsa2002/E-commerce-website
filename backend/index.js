@@ -408,9 +408,6 @@ app.post('/customers', async (req, res) => {
   }
 });
 
-
-
-
 // Schema creating for user model
 const Seller = mongoose.model('Seller',{
   name:{
@@ -457,7 +454,7 @@ app.post('/seller-signup', async (req,res)=>{
     }
   }
 
-    const token = jwt.sign(data, 'secret_ecom_admin')
+    const token = jwt.sign(data, 'secret_ecom')
     res.json({success:true,token})
 
 })
@@ -473,7 +470,7 @@ app.post('/seller-login', async(req,res)=>{
           id:seller.id
         }
       }
-      const token = jwt.sign(data, 'secret_ecom_admin')
+      const token = jwt.sign(data, 'secret_ecom')
       res.json({success:true,token})
     }
     else{
