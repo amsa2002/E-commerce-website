@@ -104,12 +104,20 @@ const [image, setImage] = useState(null);
 
 
 const fetchInfo = async () => {
-  await fetch('https://e-commerce-website-71dm.onrender.com/allproducts')
-  .then((res)=>res.json())
-  .then ((data)=>{setAllProducts(data)})
-  const sortedProducts = data.sort((a, b) => b.id - a.id)
-   setAllProducts(sortedProducts);
-}
+  try {
+    const response = await fetch('https://e-commerce-website-71dm.onrender.com/allproducts');
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
+    const data = await response.json();
+    const sortedProducts = data.sort((a, b) => b.id - a.id);
+    setAllProducts(sortedProducts);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    // Handle the error as needed (e.g., display an error message)
+  }
+};
+
 
 useEffect(()=>{
   fetchInfo()
