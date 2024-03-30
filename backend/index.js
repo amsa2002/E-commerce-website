@@ -22,12 +22,10 @@ app.listen(PORT,()=>console.log(`App is listening ${PORT}`))
 
 
 // Determine base URL for API endpoints
-
 const baseURL = process.env.BASE_URL || "https://e-commerce-website-71dm.onrender.com";
 
 
 //Database Connection With MongoDB
-
 mongoose.connect(`${process.env.DB_URL}/${process.env.DB_NAME}`,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
