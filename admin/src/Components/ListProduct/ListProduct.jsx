@@ -114,7 +114,6 @@ const fetchInfo = async () => {
     setAllProducts(sortedProducts);
   } catch (error) {
     console.error('Error fetching products:', error);
-    // Handle the error as needed (e.g., display an error message)
   }
 };
 
