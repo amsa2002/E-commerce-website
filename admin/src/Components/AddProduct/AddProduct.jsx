@@ -16,39 +16,57 @@ function AddProduct() {
     })
 
     
-    const Add_product = async () => {
-        
-        console.log(productDetails)
-        let product = productDetails
-
-        let formData = new FormData()
-        formData.append('product', image)
-        let responseData
-
-        await fetch("https://e-commerce-website-71dm.onrender.com/upload",{
-            method:'POST',
-            headers:{
-                Accept:'application/json',
-            },
-            body:formData,
-        })
-        .then((resp)=>resp.json()).then((data)=>{responseData=data})
-
-        if(responseData.success){
-            product.image = responseData.image_url
-            console.log(product)
-            await fetch ('https://e-commerce-website-71dm.onrender.com/addproduct',{
-                method:'POST',
-                headers:{
-                    Accept:'application/json',
-                    'Content-type':'application/json'
-                },
-                body:JSON.stringify(product),
-            })
-            .then((resp) => resp.json())
-            .then((data) => {data.success?alert("Product Added"):alert("Product Added")});
-        }
+    // Define a function to fetch the base URL from the backend
+const fetchBaseURL = async () => {
+    const response = await fetch('https://e-commerce-website-71dm.onrender.com/baseurl');
+    const data = await response.json();
+    return data.baseURL;
+  };
+  
+  // Modify the Add_product function to use the fetched base URL
+  const Add_product = async () => {
+    // Fetch the base URL from the backend
+    const baseURL = await fetchBaseURL();
+  
+    console.log(productDetails);
+    let product = productDetails;
+  
+    let formData = new FormData();
+    formData.append('product', image);
+    let responseData;
+  
+    // Use the fetched base URL to construct the image upload URL
+    await fetch(`${baseURL}/upload`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: formData,
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        responseData = data;
+      });
+  
+    if (responseData.success) {
+      product.image = responseData.image_url;
+      console.log(product);
+      // Use the fetched base URL to construct the product add URL
+      await fetch(`${baseURL}/addproduct`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          data.success ? alert("Product Added") : alert("Product Added");
+        });
     }
+  };
+  
     
     // const editProduct = async () => {
     //     let formData = new FormData();
