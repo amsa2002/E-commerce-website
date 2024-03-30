@@ -107,6 +107,7 @@ const fetchInfo = async () => {
   await fetch('https://e-commerce-website-71dm.onrender.com/allproducts')
   .then((res)=>res.json())
   .then ((data)=>{setAllProducts(data)})
+  const sortedProducts = data.sort((a, b) => b.id - a.id)
 }
 
 useEffect(()=>{
