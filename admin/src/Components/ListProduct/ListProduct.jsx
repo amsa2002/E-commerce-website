@@ -108,6 +108,7 @@ const fetchInfo = async () => {
   .then((res)=>res.json())
   .then ((data)=>{setAllProducts(data)})
   const sortedProducts = data.sort((a, b) => b.id - a.id)
+   setAllProducts(sortedProducts);
 }
 
 useEffect(()=>{
