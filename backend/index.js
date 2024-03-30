@@ -18,7 +18,21 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-app.listen(PORT,()=>console.log(`App is listening ${PORT}`))
+//app.listen(PORT,()=>console.log(`App is listening ${PORT}`))
+
+app.get('/',(req,res)=>{
+  res.send("Express app is running")
+})
+
+app.listen(PORT, (error)=>{
+    if(!error){
+        console.log("Server running on port"+PORT)
+    }
+    else{
+        console.log("Error:"+error)
+    }
+})
+
 
 
 // Determine base URL for API endpoints
