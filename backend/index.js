@@ -36,13 +36,7 @@ app.listen(PORT, (error)=>{
 
 
 // Determine base URL for API endpoints
-const baseURL = process.env.BASE_URL || "https://e-commerce-website-71dm.onrender.com";
-
-// Add an endpoint to fetch the base URL
-app.get('/baseurl', (req, res) => {
-  res.json({ baseURL: process.env.BASE_URL || "https://e-commerce-website-71dm.onrender.com" });
-});
-
+//const baseURL = process.env.BASE_URL || "https://e-commerce-website-71dm.onrender.com";
 
 
 //Database Connection With MongoDB
@@ -70,7 +64,7 @@ app.use("/images",express.static("upload/images"))
 app.post("/upload", upload.single('product'),(req,res)=>{
     res.json({
         success:1,
-        image_url: `${baseURL}/images/${req.file.filename}`
+        image_url: `https://e-commerce-website-71dm.onrender.com/images/${req.file.filename}`
     })
 })
 
