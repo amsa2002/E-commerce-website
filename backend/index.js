@@ -1,3 +1,4 @@
+const PORT = process.env.PORT || 6002
 const express = require("express")
 const app = express()
 const jwt = require("jsonwebtoken")
@@ -12,7 +13,7 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 
 dotenv.config()
-const PORT = process.env.PORT
+//const PORT = process.env.PORT
 app.use(express.json())
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
