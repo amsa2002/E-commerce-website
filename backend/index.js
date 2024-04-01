@@ -52,7 +52,7 @@ mongoose.connect(`${process.env.DB_URL}/${process.env.DB_NAME}`,{
 const storage = multer.diskStorage({
     destination:'./upload/images',
     filename:(req,file,db)=>{
-        return db(null,`${file.fieldname}_${Date.now()}_${path.extname(file.originalname)}`)
+        return db(null,`${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
     }
 })
 
