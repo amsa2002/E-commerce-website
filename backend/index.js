@@ -11,6 +11,9 @@ const Razorpay = require("razorpay")
 const crypto = require("crypto")
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
+const cloudinary = require('./cloudinary')
+const fs = require('fs');
+
 
 dotenv.config()
 //const PORT = process.env.PORT
@@ -18,8 +21,6 @@ app.use(express.json())
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
-
-//app.listen(PORT,()=>console.log(`App is listening ${PORT}`))
 
 app.get('/',(req,res)=>{
   res.send("Express app is running")
@@ -60,14 +61,39 @@ const upload = multer({storage:storage})
 
 //Creating Upload Endpoint For Images
 
-app.use("/images",express.static("upload/images"))
+//app.use("/images",express.static("upload/images"))
 
-app.post("/upload", upload.single('product'),(req,res)=>{
-    res.json({
-        success:1,
-        image_url: `https://e-commerce-website-71dm.onrender.com/images/${req.file.filename}`
-    })
+// app.post("/upload", upload.single('product'),(req,res)=>{
+//     res.json({
+//         success:1,
+//         image_url: `https://e-commerce-website-71dm.onrender.com/images/${req.file.filename}`
+//     })
+// })
+
+app.use('/upload', upload.array('image'), async(req, res)=>{
+  const uploader = async (path) => await cloudinary.uploads(path, 'images')
+    if(req.method === 'POST'){
+      const urls = []
+      const files= req.files
+
+      for(const file of files){
+        const {path} = file
+        const newPath = await uploader(path)
+        urls.push(newPath)
+        fs.unlinkSync(path) 
+      }
+      res.status(200).json({
+        message: 'image uploaded successfully',
+        data:urls
+      })
+    } else {
+        res.status(405).json({
+          err:'image not uploaded successfully'
+
+        })
+    }
 })
+
 
 // Schema for creating Product
 const Product = mongoose.model("Product", {
