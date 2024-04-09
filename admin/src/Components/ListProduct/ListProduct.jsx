@@ -151,13 +151,13 @@ const saveEditedProduct = async () => {
     let imageURL;
     if (image) {
       const formData = new FormData();
-      formData.append('product', image);
+      formData.append('image', image); // Ensure the key matches the server expects
       const response = await fetch('https://e-commerce-website-71dm.onrender.com/upload', {
         method: 'POST',
         body: formData,
       });
       const responseData = await response.json();
-      imageURL = responseData.image_url;
+      imageURL = responseData.data[0].url; // Assuming you're getting the URL of the uploaded image from the response
     } else {
       imageURL = editingProduct.image;
     }
