@@ -58,3 +58,21 @@ button.carousel-control-prev:hover{
 button.carousel-control-next:hover{
     background:none !important;
 }
+
+@media (min-width: 300px) and (max-width: 700px){
+    .banner-containers{
+        
+        margin: 40px auto;
+    }
+    .row>* {
+        flex-shrink: 0;
+         width:50%;
+        padding-left: calc(var(--bs-gutter-x)* .5);
+        margin-top: var(--bs-gutter-y);
+    }
+    .carousel-inner {
+        position: relative;
+        width: 100%;
+        overflow:none;
+    }
+}

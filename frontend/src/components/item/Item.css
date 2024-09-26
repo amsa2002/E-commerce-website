@@ -1,5 +1,7 @@
 .item{
     width: 21%;
+    display: flex;
+    flex-wrap: wrap;
 }
 .item img{
     width: 100%;
@@ -33,7 +35,9 @@ img.card-img-top{
     transform: scale(1.05);
     transition: 0.6s;
 }
-
+.card{
+    width: 250px;
+}
 .card-title p{
     text-align: center;
     font-weight: bold;
@@ -41,6 +45,14 @@ img.card-img-top{
 p.product-title{
     text-align: center;
 }
+
+@media (min-width: 300px) and (max-width: 700px){
+    
+
+
+}
+
+
 
 @media(max-width:800px){
     .item{

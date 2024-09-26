@@ -158,7 +158,7 @@ Object.keys(timeLeft).forEach((interval) => {
             <Link to='/Watches'><div className="carousel-item">
               <div className="mens-banner">
                 <div className="row">
-                  <div className="col-md-8">
+                  <div className="col-md-6">
                     <div className="men-left">
                     <h1>Watch 50% Offer</h1>
                     <h3><span>{timeLeft.Hours}</span> Hours <span>{timeLeft.Mins}</span> Mins <span>{timeLeft.sec}</span> Sec</h3>

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom'
 
 function Item(props) {
   return (  
-      <div className="col col-md-4"style={{ width: '22%' }}>
+    <div class="row row-cols-1 row-cols-md-4 ">
+      <div className="col" >
         <div className="card h-100">
           <div>
             <Link to={`/product/${props.id}`}>
@@ -30,6 +31,8 @@ function Item(props) {
           </div>
         </div>
       </div>
+</div>
+
 
     
   )
